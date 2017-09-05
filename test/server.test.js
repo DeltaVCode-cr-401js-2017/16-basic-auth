@@ -8,4 +8,9 @@ describe('Express Infreastructure', function () {
   it('should return 404', function () {
     return request.get('/404').expect(404);
   });
+
+  it('should have CORS headers', function() {
+    return request.get('/')
+      .expect('Access-Control-Allow-Origin', '*');
+  });
 });
