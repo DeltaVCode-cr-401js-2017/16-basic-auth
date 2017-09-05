@@ -9,6 +9,8 @@ require('dotenv').load();
 
 const app = express();
 
+require('./lib/mongoose-connect');
+
 app.use(morgan('dev'));
 app.use(cors());
 
