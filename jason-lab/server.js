@@ -10,8 +10,11 @@ app.use(cors());
 app.use(morgan('dev'));
 require('dotenv').load();
 require('./lib/mongoose-connect');
-app.use(require('./lib/basic-auth-middleware'));
+
 app.use(require('./routes/auth'));
+
+app.use(require('./lib/basic-auth-middleware'));
+
 app.use(require('./lib/error-middleware'));
 
 const PORT = process.env.PORT;
