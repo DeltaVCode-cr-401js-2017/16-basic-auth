@@ -13,6 +13,8 @@ require('/lib/mongoose-connect');
 app.use(morgan('dev'));
 app.use(cors());
 
+app.use(require('./lib/error-middleware'));
+
 const PORT = process.env.PORT;
 if(!PORT) {
   throw new Error("You forgot your .env!");
