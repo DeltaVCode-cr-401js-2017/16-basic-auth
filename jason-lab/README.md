@@ -1,6 +1,6 @@
 # **USER API WITH AUTH**
 
-## *API uses Basic Auth to get a token*
+## *User API with Basic Authentication and assigns user token*
 
 ## create a user
 ``/api/signup/``
