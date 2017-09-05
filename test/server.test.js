@@ -2,11 +2,21 @@
 
 const app = require('../server');
 const request = require('supertest')(app);
-const { expect } = require('chai');
 
 describe('Express Infreastructure', function () {
-  it('should return 404', function () {
-    return request.get('/404').expect(404);
+  describe('no authorization header', function () {
+    it('should return 404', function () {
+      return request.get('/404').expect(401);
+    });
+  });
+
+  describe('with authorization header', function () {
+    it('should return 404', function () {
+      return request
+        .get('/404')
+        .auth('user', 'password')
+        .expect(404);
+    });
   });
 
   it('should have CORS headers', function() {
