@@ -12,17 +12,20 @@ const Schema = mongoose.Schema;
 const userSchema = Schema({
   username: {type: String,required: true, unique: true}
   ,email: {type: String, required: true, unique: true}
-  ,password: {type: String, required: true}
+  ,password: {type: String}
   ,findHash: {type: String, unique: true}
 });
 
 userSchema.methods.generatePasswordHash = function (password){
   debug('generatePasswordHash');
   return new Promise ((resolve,reject) => {
+    if(!password){
+      return reject(createError(400, 'password required'));
+    }
     bcrypt.hash(password,10,(err,hash) => {
       if (err) return reject(err);
       this.password = hash;
-      resolve(this);
+      return resolve(this);
     });
   });
 };
@@ -66,4 +69,15 @@ userSchema.methods.generateToken = function (){
   });
 };
 
-module.exports = mongoose.models.user || mongoose.model('user', userSchema);
+const User = module.exports = mongoose.models.user || mongoose.model('user', userSchema);
+
+User.createUser = function(body) {
+  let password = body.password;
+  delete body.password;
+
+  let user = new User(body);
+
+  return user.validate()
+    .then(() => user.generatePasswordHash(password))
+    .then(user => user.save());
+};

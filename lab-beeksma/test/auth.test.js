@@ -14,6 +14,16 @@ const exampleUser = {
   ,email: 'example@example.com'
 };
 
+const missingPassUser = {
+  username: 'example'
+  ,email: 'example@example.com'
+};
+
+const missingUserUser = {
+  password: 'password!'
+  ,email: 'example@example.com'
+};
+
 describe('Auth Routes', function (){
   describe('GET /api/signin', function(){
     before(function(){
@@ -41,10 +51,28 @@ describe('Auth Routes', function (){
     after(function(){
       return User.remove({});
     });
-    describe('with invalid body', function(){
+    describe('with missing body', function(){
       it('should return a 400 error', function(){
         return request
           .post('/api/signup')
+          .expect(400);
+      });
+    });
+
+    describe('with missing password', function() {
+      it('should return a 400 error for missing password', function(){
+        return request
+          .post('/api/signup')
+          .send(missingPassUser)
+          .expect(400);
+      });
+    });
+
+    describe('with missing username', function() {
+      it('should return a 400 error for missing password', function(){
+        return request
+          .post('/api/signup')
+          .send(missingUserUser)
           .expect(400);
       });
     });
