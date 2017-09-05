@@ -13,4 +13,24 @@ const userSchema = Schema({
   findHash: { type: String, unique: true},
 });
 
+userSchema.methods.generatePasswordHash = function(password) {
+  debug('generatePasswordHash');
+
+  return Promise.resolve(this);
+};
+
+userSchema.methods.comparePasswordHase = function (password) {
+  debug('comparePasswordHash');
+
+  return Promise.resolve(this);
+};
+
+userSchema.methods.generateFindHash = function () {
+  debug('generateFindHash');
+};
+
+userSchema.methods.generateToken = function () {
+  debug('generateToken');
+};
+
 module.exports = mongoose.models.user || mongoose.model('user', userSchema);
