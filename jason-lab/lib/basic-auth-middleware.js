@@ -16,7 +16,6 @@ module.exports = function (req, res, next){
   }
   var utf8str = new Buffer(base64str, 'base64').toString();
   var [username, password] = utf8str.split(':', 2);
-  //debug({ username, password });
 
   req.auth = { username, password };
 

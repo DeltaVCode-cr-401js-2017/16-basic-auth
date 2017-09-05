@@ -13,9 +13,9 @@ module.exports = function (err, req, res, next) {
     err = createErrror(400, err.message);
   }
   else{
-    debug('server error', err.message);
+    debug('server error', err);
     err = createErrror(500, err.message);
   }
-  res.status(err.status).send(err.name);
+  res.status(err.status).send(err.message);
   return next();
 };
