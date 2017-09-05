@@ -4,8 +4,9 @@
   "description": "![DV](https://www.deltavcodeschool.com/wp-content/uploads/DeltaV.png) 16: Basic Auth\r ===",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "cross-env DEBUG=app:* mocha",
+    "test:watch": "cross-env DEBUG=app:* mocha -w",
+    "start": "cross-env DEBUG=app:* node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
+    "cross-env": "^5.0.5",
     "debug": "^3.0.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
