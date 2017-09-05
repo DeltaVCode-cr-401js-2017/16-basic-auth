@@ -38,10 +38,17 @@ describe('Auth Routes', function (){
   });
 
   describe('POST /api/signup', function(){
-    describe('with a valid body',function(){
-      after(function(){
-        return User.remove({});
+    after(function(){
+      return User.remove({});
+    });
+    describe('with invalid body', function(){
+      it('should return a 400 error', function(){
+        return request
+          .post('/api/signup')
+          .expect(400);
       });
+    });
+    describe('with a valid body',function(){
       it('should succeed i guess', function(){
         return request
           .post('/api/signup')
