@@ -13,11 +13,12 @@ const userSchema = Schema({
 
 userSchema.methods.generatePasswordHash = function (password){
   debug('generatePasswordHash');
-
+  return Promise.resolve(this);
 };
 
 userSchema.methods.comparePasswordHash = function (password){
   debug('comparePasswordHash');
+  return Promise.resolve(this);
 
 };
 

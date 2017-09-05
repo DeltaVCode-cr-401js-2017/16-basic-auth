@@ -5,11 +5,27 @@ const request = require('supertest')(app);
 const {expect} = require('chai');
 
 describe('Express Infrastructure', function(){
-  it ('should return 404', function(){
-    return request.get('/404').expect(404);
+  describe('without valid auth', function(){
+    it ('should return 401', function(){
+      return request.get('/404').expect(401);
+    });
+    it ('should return 401', function(){
+      return request
+        .get('/404')
+        .set('Authorization', 'Basic')
+        .expect(401);
+    });
   });
-  it ('should have CORS headers', function(){
-    return request.get('/')
-      .expect('Access-Control-Allow-Origin', '*');
+  describe('with valid auth', function(){
+    it ('should return 404', function(){
+      return request
+        .get('/404')
+        .auth('user', 'password')
+        .expect(404);
+    });
+    it ('should have CORS headers', function(){
+      return request.get('/')
+        .expect('Access-Control-Allow-Origin', '*');
+    });
   });
 });

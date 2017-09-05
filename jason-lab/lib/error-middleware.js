@@ -12,14 +12,10 @@ module.exports = function (err, req, res, next) {
     debug('user error', err.message);
     err = createErrror(400, err.message);
   }
-  else if (err.name === 'CastError' && err.kind === 'ObjectId') {
-    debug(err.message);
-    err = createErrror(404, err.message);
-  }
   else{
     debug('server error', err.message);
     err = createErrror(500, err.message);
   }
-  res.status(ser.status).send(err.name);
+  res.status(err.status).send(err.name);
   return next();
 };
