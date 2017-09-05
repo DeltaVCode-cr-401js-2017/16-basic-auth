@@ -13,24 +13,28 @@ const userSchema = Schema({
   ,findHash: {type: String, unique: true}
 });
 
-userSchema.methods.generatePassword = function (password){
+userSchema.methods.generatePasswordHash = function (password){
   debug('generatePasswordHash');
   // TODO: implement
+  return Promise.resolve(this);
 };
 
 userSchema.methods.comparePasswordHash = function (password){
   debug('comparePasswordHash');
   // TODO; implement
+  return Promise.resolve(this);
 };
 
 userSchema.methods.generateFindHash = function (){
   debug('generateFindHash');
   // TODO; implement
+  return Promise.resolve(this);
 };
 
 userSchema.methods.generateToken = function (){
   debug('generateToken');
   // TODO; implement
+  return Promise.resolve(this);
 };
 
 module.exports = mongoose.models.user || mongoose.model('user', userSchema);
