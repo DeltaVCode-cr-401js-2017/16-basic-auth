@@ -3,8 +3,6 @@
 const app = require('../server');
 const request = require('supertest')(app);
 
-const { expect } = require('chai');
-
 describe('Express Infrastructure', function(){
   describe('without vadid authorization',function(){
     it('should return 401',function(){
@@ -13,7 +11,7 @@ describe('Express Infrastructure', function(){
     });
     it('should return 401',function(){
       return request.get('/404')
-        .set('Authorization','Basic ')
+        .set('Authorization','Basic ');
     });
     it('should return 401 for missing username',function(){
       return request.get('/404')
@@ -24,7 +22,7 @@ describe('Express Infrastructure', function(){
       return request.get('/404')
         .auth('username','')
         .expect(401);
-    })
+    });
   });
   describe('with authHeader',function(){
     it('should return 404',function(){

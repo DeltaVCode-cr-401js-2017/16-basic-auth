@@ -8,7 +8,7 @@ module.exports = function(req,res,next){
 
   let authHeader = req.headers.authorization;
   if (!authHeader){
-    return next(createError(401,'auth header is required'))
+    return next(createError(401,'auth header is required'));
   }
 
   let base64str = authHeader.split('Basic ')[1];
@@ -31,4 +31,4 @@ module.exports = function(req,res,next){
   }
 
   next();
-}
+};

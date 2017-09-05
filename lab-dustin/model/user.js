@@ -14,7 +14,7 @@ const userSchema = Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   findHash: { type: String, unique: true }
-})
+});
 
 userSchema.methods.generatePasswordHash = function(password){
   debug('generatePasswordHash');
@@ -26,7 +26,7 @@ userSchema.methods.generatePasswordHash = function(password){
       resolve(this);
     });
   });
-}
+};
 
 userSchema.methods.comparePasswordHash = function(password){
   debug('comparePasswordHash');
@@ -38,7 +38,7 @@ userSchema.methods.comparePasswordHash = function(password){
       resolve(this);
     });
   });
-}
+};
 
 userSchema.methods.generateFindHash = function(){
   debug('generateFindHash');
@@ -59,7 +59,7 @@ userSchema.methods.generateFindHash = function(){
         });
     }
   });
-}
+};
 
 userSchema.methods.generateToken = function(){
   debug('generateToken');
@@ -67,6 +67,6 @@ userSchema.methods.generateToken = function(){
     .then(findHash =>
       jwt.sign({ token: findHash }, process.env.APP_SECRET)
     );
-}
+};
 
 module.exports = mongoose.models.user || mongoose.model('user',userSchema);

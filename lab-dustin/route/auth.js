@@ -18,7 +18,7 @@ router.get('/api/signin',basicAuth,function(req,res,next){
     .then(user => user.generateToken())
     .then(token => res.send(token))
     .catch(next);
-})
+});
 
 router.post('/api/signup',jsonParser,function(req,res,next){
   debug('POST /api/signup');
@@ -33,4 +33,4 @@ router.post('/api/signup',jsonParser,function(req,res,next){
     .then(user => user.generateToken())
     .then(token => res.send(token))
     .catch(next);
-})
+});
