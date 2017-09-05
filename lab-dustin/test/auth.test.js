@@ -15,7 +15,18 @@ const exampleUser = {
   email: 'example@example.com'
 };
 
-describe('Auth routes',function(){
+describe.only('Auth routes',function(){
+  describe('that fail',function(){
+    it('should return 401 for no authentication',function(){
+      return request.get('/api/signin')
+        .expect(401);
+    });
+    it('should return 401 for incorrect validation',function(){
+      return request.get('/api/signin')
+        .auth('invalidUsername','invalidPassword')
+        .expect(401);
+    });
+  });
   describe('GET /api/signin',function(){
     before(function(){
       return new User(exampleUser)

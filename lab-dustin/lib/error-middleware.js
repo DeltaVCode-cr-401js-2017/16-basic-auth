@@ -8,10 +8,15 @@ module.exports = function(err,req,res,next){
 
   if (err.status){
     debug(err.message);
-  } else if (err.name === 'ValidationError'){
+  }
+  else if (err.name === 'ValidationError'){
     err = createError(400, err.message);
-  } else {
-    console.error(err);
+  }
+  else if (err.name === 'TypeError'){
+    err = createError(401,err.message);
+  }
+  else {
+    console.error('Have no fear! youre already handling it!(kinda)',err);
     err = createError(500, err.message);
   }
 

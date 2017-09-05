@@ -18,11 +18,11 @@ app.use(require('./lib/basic-auth-middleware'));
 app.use(require('./lib/error-middleware'));
 
 const PORT = process.env.PORT;
-if (!PORT){
-  throw new Error('Forgot to specify PORT');
-}
 
 if (!module.parent){
+  if (!PORT){
+    throw new Error('Forgot to specify PORT');
+  }
   app.listen(PORT,function(){
     debug(`Listening on PORT ${PORT}`);
   });
