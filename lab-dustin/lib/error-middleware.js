@@ -16,7 +16,7 @@ module.exports = function(err,req,res,next){
     err = createError(401,err.message);
   }
   else {
-    console.error('Have no fear! youre already handling it!(kinda)',err);
+    console.error('This is the Last stop for catching errors',err);
     err = createError(500, err.message);
   }
 

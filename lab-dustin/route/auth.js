@@ -25,7 +25,7 @@ router.post('/api/signup',jsonParser,function(req,res,next){
 
   let password = req.body.password;
   delete req.body.password;
-
+  debug('PASSWORD: ', password);
   let user = new User(req.body);
 
   user.generatePasswordHash(password)

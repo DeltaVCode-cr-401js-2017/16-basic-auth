@@ -15,7 +15,7 @@ const exampleUser = {
   email: 'example@example.com'
 };
 
-describe.only('Auth routes',function(){
+describe('Auth routes',function(){
   describe('that fail',function(){
     it('should return 401 for no authentication',function(){
       return request.get('/api/signin')
@@ -45,11 +45,30 @@ describe.only('Auth routes',function(){
     });
   });
   describe('POST /api/signup',function(){
+    describe('without a valid POST',function(){
+      before(function(){
+        return new User(exampleUser)
+          .generatePasswordHash(exampleUser.password)
+          .then(user => user.save())
+          .then(user => this.testUser = user);
+      });
+      after(function(){
+        return User.remove();
+      });
+      it('should return 400 for a failed request',function(){
+        return request.post('/api/signup')
+          .send({
+            username: 'example1',
+            password: 'password!'
+          })
+          .expect(400);
+      });
+    });
     describe('with a valid body',function(){
       after(function(){
         return User.remove();
       });
-      it('should succeed?',function(){
+      it('should succeed',function(){
         return request.post('/api/signup')
           .send(exampleUser)
           .expect(200)

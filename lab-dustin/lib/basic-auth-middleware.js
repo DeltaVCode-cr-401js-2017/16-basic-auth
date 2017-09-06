@@ -5,7 +5,6 @@ const debug = require('debug')('app:basic-auth');
 
 module.exports = function(req,res,next){
   debug('auth');
-
   let authHeader = req.headers.authorization;
   if (!authHeader){
     return next(createError(401,'auth header is required'));
