@@ -2,7 +2,6 @@
 
 const app = require('../server');
 const request = require('supertest')(app);
-const {expect} = require('chai');
 
 describe('Express Infrastructure', function(){
   describe('without valid auth', function(){

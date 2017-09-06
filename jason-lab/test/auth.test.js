@@ -2,7 +2,6 @@
 
 const app = require('../server');
 const request = require('supertest')(app);
-const {expect} = require('chai');
 const debug = require('debug')('app:test/auth');
 const User = require('../model/user');
 require('../lib/mongoose-connect');
