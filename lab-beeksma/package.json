@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env DEBUG=app:* mocha",
     "test:watch": "cross-env DEBUG=app:* mocha -w",
-    "start": "cross-env DEBUG=app:* node server.js"
+    "start": "cross-env DEBUG=app:* node server.js",
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "",
