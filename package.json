@@ -1,23 +1,16 @@
 {
-  "name": "16-basic-auth",
+  "name": "auth-demo",
   "version": "1.0.0",
-  "description": "![DV](https://www.deltavcodeschool.com/wp-content/uploads/DeltaV.png) 16: Basic Auth\r ===",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "cross-env DEBUG=app:* mocha",
     "test:watch": "cross-env DEBUG=app:* mocha -w",
     "start": "cross-env DEBUG=app:* node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Meepedy/16-basic-auth.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Meepedy/16-basic-auth/issues"
-  },
-  "homepage": "https://github.com/Meepedy/16-basic-auth#readme",
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
